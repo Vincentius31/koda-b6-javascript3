@@ -242,3 +242,63 @@ console.log(array11);
 
 arrayInstance.with(index, value)
 
+// 21. isNaN()
+
+// Mengecek apakah nilai tersebut Nan atau tidak
+
+function milliseconds(x) {
+  if (isNaN(x)) {
+    return "Not a Number!";
+  }
+  return x * 1000;
+}
+
+console.log(milliseconds("100F"));
+// Expected output: "Not a Number!"
+
+console.log(milliseconds("0.0314E+2"));
+// Expected output: 3140
+
+//22. isFinite()
+
+// Mengecek apakah sebuah nilai infinite atau tidak
+
+function div(x) {
+  if (isFinite(1000 / x)) {
+    return "Number is NOT Infinity.";
+  }
+  return "Number is Infinity!";
+}
+
+console.log(div(0));
+// Expected output: "Number is Infinity!""
+
+console.log(div(1));
+// Expected output: "Number is NOT Infinity."
+
+//23. eval()
+
+// memproses sebuah string menjadi sebuah nilai Number
+
+console.log(eval("2 + 2"));
+// Expected output: 4
+
+//24. parseFloat()
+
+// memproses sebuah string menjadi sebuah nilai bertipe float
+
+function circumference(r) {
+  return parseFloat(r) * 2.0 * Math.PI;
+}
+
+console.log(circumference(4.567));
+
+//25. Math.PI()
+
+// menampilkan hasil nilai pi
+
+function lingkaran(r){
+    return Math.PI * r * r
+}
+
+console.log(lingkran(7))
