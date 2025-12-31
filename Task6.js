@@ -1,9 +1,9 @@
 const persons = [
     { name: "Koda", wait: 5 },
     { name: "Mamet", wait: 4 },
-    { name: "James", wait: 7 },
+    { name: "", wait: 7 },
     { name: "Kevin", wait: 6 },
-    { name: "", wait: 8 }
+    { name: "Mark", wait: 8 }
 ]
 
 function queue(data){
@@ -11,13 +11,22 @@ function queue(data){
     function start(){
         return new Promise((resolve, reject)=>{
             const person = data[index]
-            if(person !== " "){
-                console.log("Menunggu antrian...")
-                setTimeout(function(){
+            if(person){
+                if(person.name !== ""){
+                    console.log("Menunggu antrian...")
+                    setTimeout(function(){
                     console.log(`Pesanan "${person.name}" sudah siap`)
                     index += 1
                     resolve(start())
-                },person.wait*1000)
+                    },person.wait*1000)
+                }
+                else{
+                    setTimeout(function(){
+                    console.log(`Nama tidak boleh kosong`)
+                    index += 1
+                    resolve(start())
+                    },person.wait*1000)
+                }
             }
             else{
                 reject()
