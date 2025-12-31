@@ -24,11 +24,12 @@ const data = [
 
 console.log("Menunggu Antrian...")
 
-function tungguPesanan(data, callback){
+function tungguPesanan(data, callback, alert){
     let totalWaktu = 0
     for(let i=0; i<data.length; i++){
         totalWaktu += data[i].wait
         callback(data[i].name, totalWaktu)
+        alert(totalWaktu)
     }
 }
 
@@ -37,4 +38,8 @@ function hasil(nama, waktu){
     , waktu * 1000 )
 }
 
-tungguPesanan(data, hasil)
+function alert(waktu){
+    setTimeout(() => console.log(`Menunggu Pesanan...`), waktu *1000)
+}
+
+tungguPesanan(data, hasil, alert)
