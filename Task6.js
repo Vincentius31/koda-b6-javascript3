@@ -3,7 +3,7 @@ const persons = [
     { name: "Mamet", wait: 4 },
     { name: "James", wait: 7 },
     { name: "Kevin", wait: 6 },
-    { name: "Mike", wait: 8 }
+    { name: "", wait: 8 }
 ]
 
 function queue(data){
@@ -11,7 +11,7 @@ function queue(data){
     function start(){
         return new Promise((resolve, reject)=>{
             const person = data[index]
-            if(person){
+            if(person !== " "){
                 console.log("Menunggu antrian...")
                 setTimeout(function(){
                     console.log(`Pesanan "${person.name}" sudah siap`)
@@ -19,7 +19,7 @@ function queue(data){
                     resolve(start())
                 },person.wait*1000)
             }
-            else if(persons[1].name == ""){
+            else{
                 reject()
             }
         })
@@ -27,4 +27,6 @@ function queue(data){
     return start()
 }
 
-queue(persons).then().catch
+queue(persons).then().catch(() => {
+    console.log("Selesai")
+})
