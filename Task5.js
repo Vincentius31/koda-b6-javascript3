@@ -10,10 +10,6 @@ console.log("Menunggu Antrian...")
 
 function tunggu(waktu) {
     return new Promise((resolve, reject) => {
-        if (waktu < 0) {
-            reject("Waktu tidak boleh 0")
-        }
-
         setTimeout(() => {
             console.log("Menunggu Pesanan...")
             resolve()
@@ -41,7 +37,4 @@ function tungguPesanan(data) {
 tungguPesanan(data)
     .then(() => {
         console.log("Semua pesanan selesai")
-    })
-    .catch(error => {
-        console.log("Terjadi error:", error)
     })
