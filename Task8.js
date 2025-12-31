@@ -1,35 +1,38 @@
 const url = "https://jsonplaceholder.typicode.com/users"
 
-function toLowerCaseBuiltIn(str){
-    return str.toLowerCase();
+const array = []
+
+//Then-Catch:
+fetch(url).then(obj => obj.json().then(data => {
+    data.forEach(
+        user => {
+            array.push(user.email.toLowerCase())
+        }
+    )
+    console.log(array)
+}))
+
+//Async-await
+async function dataEmail(url) {
+    let arrayEmail = []
+    try{
+        const response = await fetch(url)
+        const users = await response.json()
+        users.forEach(
+            user => {
+                arrayEmail.push(user.email.toLowerCase())
+            }
+        )
+        console.log(arrayEmail)
+
+    }
+    catch (e){
+        console.log(error)
+    }
 }
 
-function toLowerCaseManual(str){
-    const char = {
-    A: 'a', B: 'b', C: 'c',
-    D: 'd', E: 'e', F: 'f',
-    G: 'g', H: 'h', I: 'i',
-    J: 'j', K: 'k', L: 'l',
-    M: 'm', N: 'n', O: 'o',
-    P: 'p', Q: 'q', R: 'r',
-    S: 's', T:'t', U: 'u',
-    V: 'v', W: 'w', X: 'x',
-    Y: 'y', Z: 'z'
-  }
+dataEmail(url)
 
-  let strBaru = ""
-  for(let i=0; i<str.length; i++){
-    let potongan = str[i]
-    if(char[potongan]){
-        strBaru += char[potongan]
-    }
-    else{
-        strBaru += potongan
-    }
-  }
-  return strBaru
-}
 
-fetch(url).then(response => response.json()).then(users =>{
-    const email = users.map(users => toLowerCaseBuiltIn[users.email])
-})
+
+    
